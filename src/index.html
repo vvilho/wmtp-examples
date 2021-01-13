@@ -1,23 +1,66 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8"/>
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <link rel="stylesheet" href="assets/styles.css">
-  </head>
-  <body>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lounari</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
 
 
-    <h1>Number guessing game</h1>
-    <p id="gameGuide"></p>
-    <div>
-      <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
-      <input type="submit" value="Submit guess" class="guessSubmit">
-      <div class="resultParas">
-        <p class="guesses"></p>
-        <p class="lastResult"></p>
-        <p class="lowOrHi"></p>
+<nav>
+  <div class="links">
+    <a href="">Etusivu</a>
+    <a href="">Ruokalistat</a>
+    <a href="">Ravintolat</a>
+    <a href="">Yhteystiedot</a>
+  </div>
+
+  <div class="searchBar">
+    <input type="text" placeholder="Hae ravintolan nimellä.." name="search">
+  </div>
+</nav>
+<header>
+  <div class="headerText">
+    <p>Lounari</p>
+    <p>Missä tänään syötäisiin?</p>
+  </div>
+  <div class="headerImage">
+    <div class="triangle"></div>
+
+  </div>
+</header>
+<main>
+  <section class="mainText">
+    <p>Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä.</p>
+    <p>Palvelu etsii lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen lounaslistan.</p>
+    <p>Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin klikkaamalla ravintolan logoa.</p>
+  </section>
+<div id="langButtons">
+  <button id="english">English</button>
+  <button id="finnish">Finnish</button>
+  <div style="display: flex; flex-direction: column">
+    <button id="sort">Sort alphabetically</button>
+    <button id="sortDesc">Sort alphabetically descending</button>
+  </div>
+
+  <button id="random">Random menu</button>
+</div>
+
+  <section class="ravintolat">
+    <div class="ravintola">
+      <p>Ravintola 1</p>
+      <div id="menu">
+
       </div>
     </div>
-  </body>
+    <div class="ravintola">
+      <p>Ravintola 2</p>
+
+    </div>
+  </section>
+</main>
+
+</body>
 </html>

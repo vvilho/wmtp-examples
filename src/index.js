@@ -1,100 +1,95 @@
-// Set the min and max numbers for the game as well as the max count number
+const coursesEn = ["Hamburger, cream sauce and boiled potatoes",
+  "Goan style fish curry and whole grain rice",
+  "Vegan Chili sin carne and whole grain rice",
+  "Broccoli puree soup, side salad with two napas",
+  "Lunch baguette with BBQ-turkey filling",
+  "Cheese / Chicken / Vege / Halloumi burger and french fries"];
+const coursesFi = ["Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
+  "Goalaista kalacurrya ja täysjyväriisiä",
+  "vegaani Chili sin carne ja täysjyväriisi",
+  "Parsakeittoa,lisäkesalaatti kahdella napaksella",
+  "Lunch baguette with BBQ-turkey filling",
+  "Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset"];
 
-const minNumber = 80;
-const maxNumber = 150;
-const guessAmount = 10;
+const langFinnish = document.getElementById("finnish");
+const langEnglish = document.getElementById("english");
+const menu = document.getElementById("menu");
+const sort = document.getElementById("sort");
+const sortDesc = document.getElementById("sortDesc");
+const randomDish = document.getElementById("random");
+let lang = 1;
 
-let startTime = 0;
-let endTime = 0;
+function createMenu(lang){
+  menu.textContent = "";
+  console.log("clicked");
+ for (const course of lang) {
+   menu.innerHTML += course + "<br> <br>";
 
-let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-
-const guesses = document.querySelector('.guesses');
-const lastResult = document.querySelector('.lastResult');
-const lowOrHi = document.querySelector('.lowOrHi');
-
-const guessSubmit = document.querySelector('.guessSubmit');
-const guessField = document.querySelector('.guessField');
-
-let guessCount = 1;
-let resetButton;
-
-gameGuide.innerHTML = `I have selected a random number between ${minNumber}
-and ${maxNumber}. See if you can guess it in ${guessAmount} turns or fewer.
-I'll tell you if your guess was too high or too low.`;
+ }
+};
 
 
-const checkGuess = () => {
-
-  let userGuess = Number(guessField.value);
-  if (guessCount === 1) {
-    guesses.textContent = 'Previous guesses: ';
-    startTime = Date.now();
+/*
+* Yritin saada toimimaan funktiona, mutta en löytänyt ratkaisua ettei suorittaisi funktiota suoraan.
+*
+* langFinnish.addEventListener('click', createMenu(coursesFi);
+* langEnglish.addEventListener('click', createMenu(coursesEn);
+*
+* */
+createMenu(coursesFi);
+langFinnish.addEventListener('click', () => {
+  lang = 1;
+  menu.textContent = "";
+  for (const course of coursesFi) {
+    menu.innerHTML += course + "<br> <br>";
   }
-  guesses.textContent += userGuess + ' ';
+} );
+langEnglish.addEventListener('click', () => {
+  lang = 0;
+  menu.textContent = "";
+  for (const course of coursesEn) {
+    menu.innerHTML += course + "<br> <br>";
+  }
+} );
 
-  if (userGuess === randomNumber) {
-    endTime = Date.now();
-    let timeTaken = endTime - startTime;
-    if (guessCount == 1){
-      lastResult.textContent = `Congratulations! You got it right! It took you ${timeTaken/1000} seconds and only ${guessCount} guess`;
-    }else{
-      lastResult.textContent = `Congratulations! You got it right! It took you ${timeTaken/1000} seconds and ${guessCount} guesses`;
-
-    }
-    lastResult.style.backgroundColor = 'green';
-    lowOrHi.textContent = '';
-    setGameOver();
-  } else if (guessCount === guessAmount) {
-    lastResult.textContent = '!!!GAME OVER!!!';
-    setGameOver();
-  } else {
-    lastResult.textContent = 'Wrong!';
-    lastResult.style.backgroundColor = 'red';
-    if(userGuess < randomNumber && userGuess >= minNumber) {
-      lowOrHi.textContent = 'Last guess was too low!';
-    } else if(userGuess > randomNumber && userGuess <= maxNumber) {
-      lowOrHi.textContent = 'Last guess was too high!';
-    } else if (userGuess < minNumber) {
-      lowOrHi.textContent = 'Last guess was out of range!';
-    }else if (userGuess > maxNumber) {
-      lowOrHi.textContent = 'Last guess was out of range!';
+sort.addEventListener('click', () => {
+  if (lang == 0) {
+    menu.textContent = "";
+    for (const course of coursesEn.sort()) {
+      menu.innerHTML += course + "<br> <br>";
     }
   }
-
-  guessCount++;
-  guessField.value = '';
-  guessField.focus();
-};
-
-guessSubmit.addEventListener('click', checkGuess);
-
-const setGameOver = () => {
-  guessField.disabled = true;
-  guessSubmit.disabled = true;
-  resetButton = document.createElement('button');
-  resetButton.textContent = 'Start new game';
-  document.body.append(resetButton);
-  resetButton.addEventListener('click', resetGame);
-};
-
-const resetGame = () => {
-  guessCount = 1;
-
-  const resetParas = document.querySelectorAll('.resultParas p');
-  for (let i = 0 ; i < resetParas.length ; i++) {
-    resetParas[i].textContent = '';
+  if (lang == 1) {
+    menu.textContent = "";
+    for (const course of coursesFi.sort()) {
+      menu.innerHTML += course + "<br> <br>";
+    }
   }
+});
 
-  resetButton.parentNode.removeChild(resetButton);
+sortDesc.addEventListener('click', () => {
+  if (lang == 0) {
+    menu.textContent = "";
+    coursesEn.sort();
+    coursesEn.reverse();
+    for (const course of coursesEn) {
+      menu.innerHTML += course + "<br> <br>";
+    }
+  }
+  if (lang == 1) {
+    menu.textContent = "";
+    coursesFi.sort();
+    coursesFi.reverse();
+    for (const course of coursesFi) {
+      menu.innerHTML += course + "<br> <br>";
+    }
+  }
+});
 
-  guessField.disabled = false;
-  guessSubmit.disabled = false;
-  guessField.value = '';
-  guessField.focus();
-
-  lastResult.style.backgroundColor = 'white';
-
-  randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-};
-
+randomDish.addEventListener('click', () => {
+  if(lang == 0){
+    alert(coursesEn[Math.floor(Math.random() * coursesEn.length)]);
+  }else{
+    alert(coursesFi[Math.floor(Math.random() * coursesFi.length)]);
+  }
+});
