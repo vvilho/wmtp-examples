@@ -27,9 +27,44 @@ function createMenu(lang){
 
  }
 };
-
-
-
+/*
+* App chooses random dish for user
+* */
+const randomDishFunc = () => {
+  if(lang == 0){
+    alert(coursesEn[Math.floor(Math.random() * coursesEn.length)]);
+  }else{
+    alert(coursesFi[Math.floor(Math.random() * coursesFi.length)]);
+  }
+};
+/*
+* Sorts list ascending so in this case alphabetical order
+* */
+const sortListAsc = () => {
+  if (lang == 0) {
+    coursesEn.sort();
+    createMenu(coursesEn);
+  }
+  if (lang == 1) {
+    coursesFi.sort();
+    createMenu(coursesFi);
+  }
+};
+/*
+* Sorts list descending so in this case reverse alphabetical order
+* */
+const sortListDesc = () => {
+  if (lang == 0) {
+    coursesEn.sort();
+    coursesEn.reverse();
+    createMenu(coursesEn);
+  }
+  if (lang == 1) {
+    coursesFi.sort();
+    coursesFi.reverse();
+    createMenu(coursesFi);
+  }
+};
 
 
 
@@ -38,13 +73,7 @@ const init = () => {
 
   createMenu(coursesFi);
 
-  randomDish.addEventListener('click', () => {
-    if(lang == 0){
-      alert(coursesEn[Math.floor(Math.random() * coursesEn.length)]);
-    }else{
-      alert(coursesFi[Math.floor(Math.random() * coursesFi.length)]);
-    }
-  });
+  randomDish.addEventListener('click', randomDishFunc);
 
 
   langFinnish.addEventListener('click', () => {
@@ -58,29 +87,9 @@ const init = () => {
   });
 
 
-  sort.addEventListener('click', () => {
-    if (lang == 0) {
-      coursesEn.sort();
-      createMenu(coursesEn);
-    }
-    if (lang == 1) {
-      coursesFi.sort();
-      createMenu(coursesFi);
-    }
-  });
+  sort.addEventListener('click', sortListAsc);
 
-  sortDesc.addEventListener('click', () => {
-    if (lang == 0) {
-      coursesEn.sort();
-      coursesEn.reverse();
-      createMenu(coursesEn);
-    }
-    if (lang == 1) {
-      coursesFi.sort();
-      coursesFi.reverse();
-      createMenu(coursesFi);
-    }
-  });
+  sortDesc.addEventListener('click', sortListDesc);
 };
 
 init();
