@@ -29,67 +29,58 @@ function createMenu(lang){
 };
 
 
-/*
-* Yritin saada toimimaan funktiona, mutta en löytänyt ratkaisua ettei suorittaisi funktiota suoraan.
-*
-* langFinnish.addEventListener('click', createMenu(coursesFi);
-* langEnglish.addEventListener('click', createMenu(coursesEn);
-*
-* */
-createMenu(coursesFi);
-langFinnish.addEventListener('click', () => {
-  lang = 1;
-  menu.textContent = "";
-  for (const course of coursesFi) {
-    menu.innerHTML += course + "<br> <br>";
-  }
-} );
-langEnglish.addEventListener('click', () => {
-  lang = 0;
-  menu.textContent = "";
-  for (const course of coursesEn) {
-    menu.innerHTML += course + "<br> <br>";
-  }
-} );
 
-sort.addEventListener('click', () => {
-  if (lang == 0) {
-    menu.textContent = "";
-    for (const course of coursesEn.sort()) {
-      menu.innerHTML += course + "<br> <br>";
-    }
-  }
-  if (lang == 1) {
-    menu.textContent = "";
-    for (const course of coursesFi.sort()) {
-      menu.innerHTML += course + "<br> <br>";
-    }
-  }
-});
 
-sortDesc.addEventListener('click', () => {
-  if (lang == 0) {
-    menu.textContent = "";
-    coursesEn.sort();
-    coursesEn.reverse();
-    for (const course of coursesEn) {
-      menu.innerHTML += course + "<br> <br>";
-    }
-  }
-  if (lang == 1) {
-    menu.textContent = "";
-    coursesFi.sort();
-    coursesFi.reverse();
-    for (const course of coursesFi) {
-      menu.innerHTML += course + "<br> <br>";
-    }
-  }
-});
 
-randomDish.addEventListener('click', () => {
-  if(lang == 0){
-    alert(coursesEn[Math.floor(Math.random() * coursesEn.length)]);
-  }else{
-    alert(coursesFi[Math.floor(Math.random() * coursesFi.length)]);
-  }
-});
+
+
+const init = () => {
+
+  createMenu(coursesFi);
+
+  randomDish.addEventListener('click', () => {
+    if(lang == 0){
+      alert(coursesEn[Math.floor(Math.random() * coursesEn.length)]);
+    }else{
+      alert(coursesFi[Math.floor(Math.random() * coursesFi.length)]);
+    }
+  });
+
+
+  langFinnish.addEventListener('click', () => {
+    lang = 1;
+    createMenu(coursesFi);
+  });
+
+  langEnglish.addEventListener('click', () => {
+    lang = 0;
+    createMenu(coursesEn);
+  });
+
+
+  sort.addEventListener('click', () => {
+    if (lang == 0) {
+      coursesEn.sort();
+      createMenu(coursesEn);
+    }
+    if (lang == 1) {
+      coursesFi.sort();
+      createMenu(coursesFi);
+    }
+  });
+
+  sortDesc.addEventListener('click', () => {
+    if (lang == 0) {
+      coursesEn.sort();
+      coursesEn.reverse();
+      createMenu(coursesEn);
+    }
+    if (lang == 1) {
+      coursesFi.sort();
+      coursesFi.reverse();
+      createMenu(coursesFi);
+    }
+  });
+};
+
+init();
