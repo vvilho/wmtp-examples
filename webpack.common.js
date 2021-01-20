@@ -8,6 +8,9 @@ module.exports = {
   entry: {
     app: './src/index.js',
   },
+  devServer: {
+    host: '0.0.0.0'
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new WriteFilePlugin(),
