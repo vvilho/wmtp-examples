@@ -1,119 +1,114 @@
-// Set the min and max numbers for the game as well as the max count number
-
-const minNumber = 0;
-const maxNumber = 100;
-
+import Lunchmenu from './assets/menu.json';
+import Sodexomodule from './modules/sodexo-data';
+import FazerModule from "./modules/fazer-module";
 
 
-let randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-let guessed = 'no';
-const guesses = document.querySelector('.guesses');
-const lastResult = document.querySelector('.lastResult');
-const guessInputs = [];
-const lowOrHi = document.querySelector('.lowOrHi');
-
-const guessSubmit = document.querySelector('.guessSubmit');
-const guessField = document.querySelector('.guessField');
-
-let guessCount = 1;
-let resetButton;
-
-gameGuide.innerHTML = `I have selected a random number between ${minNumber}
-and ${maxNumber}.
-I'll tell you if your guess was too high or too low.`;
 
 
-const checkGuess = () => {
+const langFinnish = document.getElementById("finnish");
+const langEnglish = document.getElementById("english");
+const menuSodexo = document.getElementById("menuSodexo");
+const menuFazer = document.getElementById("menuFazer");
 
-  let userGuess = Number(guessField.value);
-  if (guessCount === 1) {
-    guesses.textContent = 'Previous guesses: ';
+const sort = document.getElementById("sort");
+const sortDesc = document.getElementById("sortDesc");
+const randomDish = document.getElementById("random");
+let lang = 1;
+
+
+/*
+* Parse menu from JSON from sodexo website
+* */
+
+
+
+
+function createMenu(sodexo, fazer){
+  menuSodexo.textContent = "";
+  menuFazer.textContent = "";
+  console.log("clicked");
+  for (const course of sodexo) {
+    menuSodexo.innerHTML += course + "<br> <br>";
 
   }
-  guesses.textContent += userGuess + ' ';
-  guessInputs.push(userGuess);
+  for (const course of fazer) {
+    menuFazer.innerHTML += course + "<br> <br>";
 
-  if (userGuess === randomNumber) {
-
-
-    if (guessCount == 1){
-      lastResult.textContent = `Congratulations! You got it right! It took you ${guessCount} guess`;
-    }else{
-      lastResult.textContent = `Congratulations! You got it right! It took you ${guessCount} guesses`;
-
-    }
-    guessed = 'yes';
-    lastResult.style.backgroundColor = 'green';
-    lowOrHi.textContent = '';
-    setGameOver();
-
-  } else {
-    lastResult.textContent = 'Wrong!';
-    lastResult.style.backgroundColor = 'red';
-    if(userGuess < randomNumber && userGuess >= minNumber) {
-      lowOrHi.textContent = 'Last guess was too low!';
-    } else if(userGuess > randomNumber && userGuess <= maxNumber) {
-      lowOrHi.textContent = 'Last guess was too high!';
-    } else if (userGuess < minNumber) {
-      lowOrHi.textContent = 'Last guess was out of range!';
-    }else if (userGuess > maxNumber) {
-      lowOrHi.textContent = 'Last guess was out of range!';
-    }
   }
-
-  guessCount++;
-  guessField.value = '';
-  guessField.focus();
 };
-
-guessSubmit.addEventListener('click', checkGuess);
-
-const setGameOver = () => {
-  guessField.disabled = true;
-  guessSubmit.disabled = true;
-  resetButton = document.createElement('button');
-  resetButton.textContent = 'Start new game';
-  document.body.append(resetButton);
-  resetButton.addEventListener('click', resetGame);
+/*
+* App chooses random dish for user
+* */
+const randomDishFunc = () => {
+  if(lang == 0){
+    const combinedMenu = FazerModule.coursesEn.concat(Sodexomodule.coursesEn);
+    alert(combinedMenu[Math.floor(Math.random() * combinedMenu.length)]);
+  }else{
+    const combinedMenu = FazerModule.coursesFi.concat(Sodexomodule.coursesFi);
+    alert(combinedMenu[Math.floor(Math.random() * combinedMenu.length)]);  }
 };
+/*
+* Sorts list ascending so in this case alphabetical order
+* */
+const sortListAsc = () => {
+  if (lang == 0) {
+    Sodexomodule.coursesEn.sort();
+    FazerModule.coursesEn.sort();
+    createMenu(Sodexomodule.coursesEn, FazerModule.coursesEn);
 
-const resetGame = () => {
-  guessCount = 1;
-  guessed = 'no';
 
-  const resetParas = document.querySelectorAll('.resultParas p');
-  for (let i = 0 ; i < resetParas.length ; i++) {
-    resetParas[i].textContent = '';
   }
-
-  resetButton.parentNode.removeChild(resetButton);
-
-  guessField.disabled = false;
-  guessSubmit.disabled = false;
-  guessField.value = '';
-  guessField.focus();
-
-  lastResult.style.backgroundColor = 'white';
-
-  randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+  if (lang == 1) {
+    Sodexomodule.coursesFi.sort();
+    FazerModule.coursesFi.sort();
+    createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
+  }
 };
-
-const autoGuesser = () => {
-  guessField.value = (maxNumber + minNumber) /2;
-  guessSubmit.click();
-
-  while (guessed == 'no'){
-    if(lowOrHi.textContent == "Last guess was too low!!"){
-      guessField.value = (maxNumber + [...guessInputs].pop()) / 2;
-      guessSubmit.click();
-      console.log('arvaus');
-    }else {
-      guessField.value = (minNumber + [...guessInputs].pop()) / 2;
-      guessSubmit.click();
-      console.log('arvaus');
-
-    }
+/*
+* Sorts list descending so in this case reverse alphabetical order
+* */
+const sortListDesc = () => {
+  if (lang == 0) {
+    Sodexomodule.coursesEn.sort();
+    Sodexomodule.coursesEn.reverse();
+    FazerModule.coursesEn.sort();
+    FazerModule.coursesEn.reverse();
+    createMenu(Sodexomodule.coursesEn, FazerModule.coursesEn);
+  }
+  if (lang == 1) {
+    Sodexomodule.coursesFi.sort();
+    Sodexomodule.coursesFi.reverse();
+    FazerModule.coursesFi.sort();
+    FazerModule.coursesFi.reverse();
+    createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
   }
 };
 
-autoGuesser();
+
+
+
+const init = () => {
+  FazerModule.init();
+  Sodexomodule.ParseSodexoMenu(Lunchmenu.courses);
+  createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
+
+  randomDish.addEventListener('click', randomDishFunc);
+
+
+  langFinnish.addEventListener('click', () => {
+    lang = 1;
+    createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
+  });
+
+  langEnglish.addEventListener('click', () => {
+    lang = 0;
+    createMenu(Sodexomodule.coursesEn, FazerModule.coursesEn);
+  });
+
+
+  sort.addEventListener('click', sortListAsc);
+
+  sortDesc.addEventListener('click', sortListDesc);
+};
+
+init();
