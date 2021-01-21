@@ -11,9 +11,10 @@ const list = [
   {name: 'Pureed root vegetable soup with smoked cheese', price: 8.00}
 ];
 
-const regex = /^[A-ZÖÄÅ]{1}[A-ZÖÄÅa-zöäå0-9-/,;() ]{4,64}$/;
+
 
 const validateMeal = (menu) => {
+  const regex = /^[A-ZÖÄÅ]{1}[A-ZÖÄÅa-zöäå0-9\ \-\/,()]{3,63}$/;
   for (const i of menu) {
     console.log(regex.test(i.name), i.name);
   }
