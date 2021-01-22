@@ -1,6 +1,6 @@
 import Lunchmenu from './assets/menu.json';
-import Sodexomodule from './modules/sodexo-data';
-import FazerModule from "./modules/fazer-module";
+import Sodexomodule from './assets/modules/sodexo-data';
+import FazerModule from "./assets/modules/fazer-module";
 
 
 

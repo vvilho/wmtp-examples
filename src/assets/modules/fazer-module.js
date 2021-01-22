@@ -1,5 +1,5 @@
-import menuFinnish from '../assets/fazer-menu-fi.json';
-import menuEnglish from '../assets/fazer-menu-en.json';
+import menuFinnish from '../fazer-menu-fi.json';
+import menuEnglish from '../fazer-menu-en.json';
 
 
 let coursesEn = [];
