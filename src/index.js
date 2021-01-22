@@ -164,7 +164,7 @@ const avgGuesser = () => {
     resetGame();
     i++;
   };
-  avgGuesses.textContent = `For 500 rounds it took on average of ${arrAvg(avgGuessList)} guesses`;
+  avgGuesses.textContent = `For 5000 rounds it took on average of ${arrAvg(avgGuessList)} guesses`;
   console.log("After 5000 rounds the average guess number is: ",arrAvg(avgGuessList));
   console.log(
     "Maximum number of guesses with this algorithm is 8 (if min is 0 and max is 100). Theoretically maxNumber-minNumber +1 and in this case 101.\n" +
