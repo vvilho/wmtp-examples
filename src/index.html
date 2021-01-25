@@ -3,40 +3,47 @@
 <head>
 
   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    name="description"
+    content="Website for people to find nearest lunch places and to see their menus all in one place.">
+
   <title>Lounari</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body>
 
 
 <nav>
-  <div class="links">
-    <a href="">Etusivu</a>
-    <a href="">Ruokalistat</a>
-    <a href="">Ravintolat</a>
-    <a href="">Yhteystiedot</a>
+  <div class="links" role="list">
+    <a role="listitem" href="index.html">Etusivu</a>
+    <a role="listitem" href="index.html">Ravintolat</a>
+    <a role="listitem" href="index.html">Yhteystiedot</a>
   </div>
 
   <div class="searchBar">
-    <input type="text" placeholder="Hae ravintolan nimellä.." name="search">
+    <i class="fas fa-search"></i>
+    <input type="text" placeholder="Hae ravintolan nimellä.." name="search" id="search" aria-label="haku">
   </div>
 </nav>
 <header>
   <div class="headerText">
-    <p>Lounari</p>
-    <p>Missä tänään syötäisiin?</p>
+    <p id="otsikko">Lounari</p>
+    <p id="slogan">Missä tänään syötäisiin?</p>
   </div>
   <div class="headerImage">
+    <span role="img" aria-label="lasagne and tomatoes"> </span>
     <div class="triangle"></div>
 
   </div>
 </header>
 <main>
   <section class="mainText">
-    <p>Missä tänään syötäisiin? Tuttu tarina ennen lounashetkeä.</p>
-    <p>Palvelu etsii lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen lounaslistan.</p>
+    <h2>Lounasaika</h2>
+    <p>Kello 12. Missä tänään syötäisiin? Tuttuja kysymyksiä monille.</p>
+    <p>Lounari etsii lähelläsi olevat lounaspaikat, sekä näyttää niiden päivittäisen lounaslistan.</p>
     <p>Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin klikkaamalla ravintolan logoa.</p>
   </section>
+
   <div id="langButtons">
     <button id="english">English</button>
     <button id="finnish">Finnish</button>
@@ -50,19 +57,47 @@
 
   <section class="ravintolat">
     <div class="ravintola">
-      <h4>Sodexo</h4>
-      <div id="menuSodexo">
-
+      <div class="logoFrame">
+        <img src="./assets/sodexoLogo.jpeg" class="restaurantLogo" alt="Sodexo company logo">
       </div>
+      <div class="restaurantData">
+        <div class="dataHeader">
+          <p class="restaurantName">Metropolia Myyrmäki</p>
+          <div class="restaurantLocation">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>150m</p>
+          </div>
+        </div>
+        <div>
+          <div id="menuSodexo">
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="ravintola">
-      <h4>Fazer</h4>
-      <div id="menuFazer">
+      <div class="logoFrame">
+        <img src="./assets/fazerLogo.png" class="restaurantLogo" alt="Sodexo company logo">
+      </div>
+      <div class="restaurantData">
+        <div class="dataHeader">
+          <p class="restaurantName">Metropolia Myllypuro</p>
+          <div class="restaurantLocation">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>200m</p>
+          </div>
+        </div>
+        <div>
+          <div id="menuFazer">
+          </div>
+        </div>
 
       </div>
+
+
     </div>
   </section>
 </main>
-
+<script src="https://kit.fontawesome.com/63fb57545a.js" crossorigin="anonymous"></script>
 </body>
 </html>

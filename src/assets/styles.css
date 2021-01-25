@@ -1,45 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;800&display=swap');
 
-:root {
-  --vari1: #793808;
-  --taustavari: #81f07e;
-  --tekstiTausta: #f3f3f3;
+@font-face {
+  font-family: LatoBlack ;
+  src: url("./fonts/Lato-Black.ttf") format('truetype');
 }
 
-body {
-  margin: 10px;
+@font-face {
+  font-family: LatoBold;
+  src: url("./fonts/Lato-Bold.ttf") format('truetype');
+
+}
+
+@font-face {
+  font-family: LatoRegular;
+  src: url("./fonts/Lato-Regular.ttf") format('truetype');
+
+}
+
+:root {
+  --vari1: black;
+  --taustavari: #35d6fd;
+  --tekstiTausta: #ffffff;
+  --hoverLinkki: #E0437C;
+}
+
+html, body {
+  margin: 0;
+  padding: 0 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 nav {
+  position: sticky;
   display: flex;
   justify-content: flex-start;
   top: 0;
   width: 100%;
   padding: 10px 10px;
+  background-color: white;
 }
 
 .links {
   display: flex;
   justify-content: space-around;
   flex-grow: 1;
-  color: var(--vari1);
 }
 
 .links a {
-  padding: 3%;
+  padding: 1%;
   margin: 0;
   color: var(--vari1);
   text-decoration: none;
+  font-family: LatoBold;
+  font-size: 1.5em;
 }
 
 .links a:hover {
 
-  padding: 28px 48px;
-  color: red;
-  border: red;
-  text-decoration: underline;
-  background-color: antiquewhite;
-  border: solid 1px black;
-  border-radius: 3%;
+  border: solid 1px var(--vari1);
+  border-radius: 10px;
+  margin: -1px;
+  background-color: var(--taustavari);
 
 
 }
@@ -56,23 +78,44 @@ nav {
 
 .searchBar input {
   height: 30px;
-  width: calc(100% - 100px);
-  text-align: center;
+  width: 70%;
+  text-align: left;
   border: solid 2px var(--vari1);
   border-radius: 5px;
+  padding-left: 30px;
+}
+.searchBar input:focus {
+  outline: none !important;
+  border-color: var(--vari1);
+  box-shadow: 0 0 10px var(--vari1);
 }
 
 header {
   height: 20vh;
+  min-height: 160px;
   display: flex;
   justify-content: center;
+  z-index: 0;
 
 
+}
+
+#otsikko {
+  font-family: 'Roboto Slab';
+  font-weight: 800;
+  font-size: 3.75em;
+}
+
+#slogan {
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 1.43em;
 }
 
 .headerImage {
   height: inherit;
   background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
+
   background-size: 135%;
   background-position: center;
   background-repeat: no-repeat;
@@ -80,6 +123,7 @@ header {
   width: 50%;
   flex-grow: 1;
   position: relative;
+  z-index: -1;
 
 }
 
@@ -110,23 +154,83 @@ header {
   margin: 5vh;
 
 }
+.mainText h2 {
+  font-family: LatoBold;
+}
 
 .mainText p {
   margin: 0 !important;
+  font-family: LatoRegular;
+  font-size: 1.5em;
+  line-height: 1.5;
 }
 
 .ravintolat {
   display: flex;
   justify-content: space-evenly;
+
 }
 
 .ravintola {
+  display: flex;
   border: 1px dashed var(--vari1);
   border-radius: 10px;
   background-color: var(--tekstiTausta);
   width: 40%;
+  padding: 25px;
 
-  padding-left: 15px;
+}
+
+.dataHeader {
+  display: flex;
+  justify-content: space-around;
+}
+
+.logoFrame {
+  display: flex;
+
+}
+
+.restaurantName {
+  font-family: LatoBlack;
+  font-size: 1.3em;
+  margin-right: 10px;
+}
+
+.restaurantLogo {
+  width: 8vw;
+  height: 8vw;
+  border: 1px solid black;
+  margin: 25px;
+}
+
+.restaurantData {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+.restaurantLocation {
+  display: flex;
+  position: relative;
+  top: 10px;
+  font-family: LatoRegular;
+  font-size: 0.88em;
+}
+.menuText {
+  font-family: LatoRegular;
+  font-size: 1em;
+}
+.fa-map-marker-alt {
+  position: relative;
+  top: 15px;
+  right: 5px;
+}
+
+.fa-search {
+  color: var(--vari1);
+  position: relative;
+  left: 25px;
 }
 
 #langButtons {
@@ -136,3 +240,43 @@ header {
 #langButtons button {
   margin: 15px;
 }
+
+
+@media only screen and (max-width: 800px) {
+  nav {
+    flex-direction: column;
+  }
+
+  .searchBar input {
+    width: 100%;
+  }
+
+  .ravintolat {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ravintola {
+    margin: 1vh;
+    width: 80%;
+  }
+
+  .restaurantLogo {
+    width: 12vw;
+    height: 12vw;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+  .triangle {
+    border-bottom: 160px solid var(--taustavari) !important;
+    border-right: 160px solid transparent !important;
+  }
+}
+
