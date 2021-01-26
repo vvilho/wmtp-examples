@@ -21,7 +21,7 @@
   --vari1: black;
   --taustavari: #35d6fd;
   --tekstiTausta: #ffffff;
-  --hoverLinkki: #E0437C;
+  --hoverLinkki: #e5e5e5;
 }
 
 html, body {
@@ -39,6 +39,10 @@ nav {
   width: 100%;
   padding: 10px 10px;
   background-color: white;
+}
+
+.mobileNav{
+  display: none;
 }
 
 .links {
@@ -84,10 +88,15 @@ nav {
   border-radius: 5px;
   padding-left: 30px;
 }
+
 .searchBar input:focus {
   outline: none !important;
   border-color: var(--vari1);
   box-shadow: 0 0 10px var(--vari1);
+}
+
+.barsIcon {
+  display: none;
 }
 
 header {
@@ -154,6 +163,7 @@ header {
   margin: 5vh;
 
 }
+
 .mainText h2 {
   font-family: LatoBold;
 }
@@ -217,10 +227,12 @@ header {
   font-family: LatoRegular;
   font-size: 0.88em;
 }
+
 .menuText {
   font-family: LatoRegular;
   font-size: 1em;
 }
+
 .fa-map-marker-alt {
   position: relative;
   top: 15px;
@@ -237,10 +249,19 @@ header {
   display: flex;
   justify-content: center;
 }
+
 #langButtons button {
   margin: 15px;
 }
 
+.ravintolatH3 {
+  font-family: LatoBold;
+  font-size: 1.5em;
+  text-align: center;
+}
+.hide {
+  display: none!important;
+}
 
 @media only screen and (max-width: 800px) {
   nav {
@@ -249,6 +270,71 @@ header {
 
   .searchBar input {
     width: 100%;
+  }
+
+  header {
+    background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
+
+  }
+
+  .headerImage {
+    display: none;
+  }
+
+  .headerText {
+    background-color: var(--taustavari);
+    padding: -10px;
+  }
+
+  .mobileNav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+
+  }
+  .mobileLinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2em;
+    font-family: LatoRegular;
+    width: 100%;
+
+
+
+  }
+  .mobileLinks a {
+    color: black;
+    text-decoration: none;
+    line-height: 1.5em;
+    width: 100%;
+    text-align: center;
+
+  }
+  .mobileLinks a:hover{
+    background-color: var(--hoverLinkki);
+  }
+
+  .links {
+    display: none;
+  }
+
+  .barsIcon {
+    font-size: 2em;
+    display: flex;
+  }
+
+  .searchBar {
+    justify-content: left;
+  }
+
+  .searchIcon {
+    display: none;
+  }
+
+  #search {
+    display: none;
   }
 
   .ravintolat {
@@ -265,12 +351,26 @@ header {
     width: 12vw;
     height: 12vw;
   }
+
   html, body {
     margin: 0;
     padding: 0;
     max-width: 100%;
     overflow-x: hidden;
   }
+
+  .mainText {
+    text-align: center;
+    margin: 2vh;
+
+  }
+
+
+  .mainText p {
+    font-size: 1em;
+
+  }
+
 }
 
 @media only screen and (max-height: 800px) {

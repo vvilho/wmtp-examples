@@ -2,7 +2,9 @@ import Lunchmenu from './assets/menu.json';
 import Sodexomodule from './assets/modules/sodexo-data';
 import FazerModule from "./assets/modules/fazer-module";
 
-
+const mobileNav = document.querySelector('.mobileNav');
+const barsIconDiv = document.querySelector('.barsIcon');
+const barsIcon = document.querySelector('#mobileNavIcon');
 
 
 const langFinnish = document.getElementById("finnish");
@@ -11,14 +13,21 @@ const menuSodexo = document.getElementById("menuSodexo");
 const menuFazer = document.getElementById("menuFazer");
 
 const sort = document.getElementById("sort");
-const sortDesc = document.getElementById("sortDesc");
 const randomDish = document.getElementById("random");
 let lang = 1;
+let sortABC = 1;
 
 
 /*
 * Parse menu from JSON from sodexo website
 * */
+
+
+
+barsIconDiv.addEventListener('click', () => {
+  mobileNav.classList.toggle('hide');
+  barsIcon.classList.toggle('fa-caret-down');
+});
 
 
 
@@ -63,6 +72,8 @@ const sortListAsc = () => {
     FazerModule.coursesFi.sort();
     createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
   }
+
+  sortABC = 1;
 };
 /*
 * Sorts list descending so in this case reverse alphabetical order
@@ -82,7 +93,11 @@ const sortListDesc = () => {
     FazerModule.coursesFi.reverse();
     createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
   }
+
+  sortABC = 0;
 };
+
+
 
 
 
@@ -106,9 +121,16 @@ const init = () => {
   });
 
 
-  sort.addEventListener('click', sortListAsc);
+  sort.addEventListener('click', () => {
+    if(sortABC == 0){
+      sortListAsc();
+    }else{
+      sortListDesc();
+    }
 
-  sortDesc.addEventListener('click', sortListDesc);
+  });
+
+
 };
 
 init();

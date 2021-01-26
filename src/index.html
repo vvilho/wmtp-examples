@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
   <meta
     name="description"
-    content="Website for people to find nearest lunch places and to see their menus all in one place.">
+    content="Website for people to find nearest lunch places and to see their menus all in one place."/>
 
   <title>Lounari</title>
   <link rel="stylesheet" href="./assets/styles.css">
@@ -14,17 +14,29 @@
 
 
 <nav>
-  <div class="links" role="list">
-    <a role="listitem" href="index.html">Etusivu</a>
-    <a role="listitem" href="index.html">Ravintolat</a>
-    <a role="listitem" href="index.html">Yhteystiedot</a>
+  <div class="links">
+    <a href="index.html">Etusivu</a>
+    <a href="index.html">Ravintolat</a>
+    <a href="index.html">Yhteystiedot</a>
   </div>
 
   <div class="searchBar">
-    <i class="fas fa-search"></i>
+    <div class="barsIcon"><i class="fas fa-bars" id="mobileNavIcon"></i></div>
+
+    <div class="searchIcon"><i class="fas fa-search"></i></div>
     <input type="text" placeholder="Hae ravintolan nimellä.." name="search" id="search" aria-label="haku">
   </div>
 </nav>
+<!-- mobile navigation -->
+<div class="mobileNav hide">
+  <div class="mobileLinks">
+    <a href="index.html">Etusivu</a>
+    <a href="index.html">Ravintolat</a>
+    <a href="index.html">Yhteystiedot</a>
+  </div>
+</div>
+
+
 <header>
   <div class="headerText">
     <p id="otsikko">Lounari</p>
@@ -47,14 +59,12 @@
   <div id="langButtons">
     <button id="english">English</button>
     <button id="finnish">Finnish</button>
-    <div style="display: flex; flex-direction: column">
-      <button id="sort">Sort alphabetically</button>
-      <button id="sortDesc">Sort alphabetically descending</button>
-    </div>
+    <button id="sort">Sort</button>
+
 
     <button id="random">Random menu</button>
   </div>
-
+  <h3 class="ravintolatH3">Ravintolat</h3>
   <section class="ravintolat">
     <div class="ravintola">
       <div class="logoFrame">
