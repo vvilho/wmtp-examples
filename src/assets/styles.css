@@ -337,6 +337,11 @@ header {
     display: none;
   }
 
+  .restaurantLogo {
+    margin-left: 0;
+
+  }
+
   .ravintolat {
     flex-direction: column;
     align-items: center;

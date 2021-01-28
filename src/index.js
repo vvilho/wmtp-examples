@@ -19,11 +19,8 @@ let sortABC = 1;
 
 
 /*
-* Parse menu from JSON from sodexo website
+* Mobilenavigation bar
 * */
-
-
-
 barsIconDiv.addEventListener('click', () => {
   mobileNav.classList.toggle('hide');
   barsIcon.classList.toggle('fa-caret-down');
@@ -97,7 +94,14 @@ const sortListDesc = () => {
   sortABC = 0;
 };
 
+sort.addEventListener('click', () => {
+  if(sortABC == 0){
+    sortListAsc();
+  }else{
+    sortListDesc();
+  }
 
+});
 
 
 
@@ -121,14 +125,7 @@ const init = () => {
   });
 
 
-  sort.addEventListener('click', () => {
-    if(sortABC == 0){
-      sortListAsc();
-    }else{
-      sortListDesc();
-    }
 
-  });
 
 
 };
