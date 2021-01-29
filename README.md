@@ -12,7 +12,7 @@ Source code files are in `src/` folder.
 # Install dependencies (package.json)
 npm install
 
-# Start the dev server (http://localhost:8080/ by default)
+# Start the dev server (http://localhost:8080/ by default or http://0.0.0.0:8080)
 # (Config: webpack.common.js + webpack.dev.js)
 npm start
 
