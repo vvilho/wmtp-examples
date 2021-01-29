@@ -1,3 +1,5 @@
+import Lunchmenu from '../menu.json';
+
 let coursesEn = [];
 let coursesFi = [];
 
@@ -8,5 +10,10 @@ const ParseSodexoMenu = (sodexoMenu) => {
     coursesFi.push(course.title_fi);
   }
 };
-const SodexoModule = {ParseSodexoMenu, coursesFi, coursesEn};
+
+const init = () => {
+  ParseSodexoMenu(Lunchmenu.courses);
+};
+
+const SodexoModule = {init, coursesFi, coursesEn};
 export default SodexoModule;

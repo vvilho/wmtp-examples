@@ -1,4 +1,16 @@
-import Lunchmenu from './assets/menu.json';
+//Register the generated service worker
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
+  });
+}
+
+
 import Sodexomodule from './assets/modules/sodexo-data';
 import FazerModule from "./assets/modules/fazer-module";
 
@@ -107,8 +119,8 @@ sort.addEventListener('click', () => {
 
 
 const init = () => {
-  FazerModule.init();
-  Sodexomodule.ParseSodexoMenu(Lunchmenu.courses);
+  FazerModule.init(0);
+  Sodexomodule.init();
   createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
 
   randomDish.addEventListener('click', randomDishFunc);
@@ -131,3 +143,5 @@ const init = () => {
 };
 
 init();
+
+
