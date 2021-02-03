@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator) {
 }
 
 
-import Sodexomodule from './assets/modules/sodexo-data';
+import Sodexomodule from './assets/modules/sodexo-module';
 import FazerModule from "./assets/modules/fazer-module";
 
 const mobileNav = document.querySelector('.mobileNav');

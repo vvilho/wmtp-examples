@@ -1,7 +1,12 @@
-import Lunchmenu from '../menu.json';
+//import Lunchmenu from '../menu.json';
+import getJSON from './getJSON-module';
 
 let coursesEn = [];
 let coursesFi = [];
+
+
+const Lunchmenu = getJSON.dataOut('https://www.sodexo.fi/ruokalistat/output/daily_json/152/');
+console.log(Lunchmenu);
 
 const ParseSodexoMenu = (sodexoMenu) => {
   const courses = Object.values(sodexoMenu);
