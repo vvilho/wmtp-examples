@@ -118,7 +118,7 @@ header {
 #slogan {
   font-family: 'Roboto Slab';
   font-weight: 400;
-  font-size: 1.43em;
+  font-size:calc(15px + 2vw);
 }
 
 .headerImage {
@@ -166,12 +166,13 @@ header {
 
 .mainText h2 {
   font-family: LatoBold;
+  font-size:calc(15px + 1.5vw);
 }
 
 .mainText p {
   margin: 0 !important;
   font-family: LatoRegular;
-  font-size: 1.5em;
+  font-size:calc(15px + 1vw);
   line-height: 1.5;
 }
 
@@ -203,7 +204,7 @@ header {
 
 .restaurantName {
   font-family: LatoBlack;
-  font-size: 1.3em;
+  font-size:calc(15px + 1.2vw);
   margin-right: 10px;
 }
 
@@ -218,6 +219,8 @@ header {
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  font-size: 1.5vw;
+
 }
 
 .restaurantLocation {
@@ -230,7 +233,7 @@ header {
 
 .menuText {
   font-family: LatoRegular;
-  font-size: 1em;
+  font-size: 1vw;
 }
 
 .fa-map-marker-alt {
@@ -256,7 +259,7 @@ header {
 
 .ravintolatH3 {
   font-family: LatoBold;
-  font-size: 1.5em;
+  font-size:calc(15px + 1.5vw);
   text-align: center;
 }
 .hide {
