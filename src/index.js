@@ -13,6 +13,7 @@ if ('serviceWorker' in navigator) {
 
 import Sodexomodule from './assets/modules/sodexo-module';
 import FazerModule from "./assets/modules/fazer-module";
+import  {getJSON} from "./assets/modules/getJSON-module";
 
 const mobileNav = document.querySelector('.mobileNav');
 const barsIconDiv = document.querySelector('.barsIcon');
@@ -118,10 +119,33 @@ sort.addEventListener('click', () => {
 
 
 
-const init = () => {
-  FazerModule.init(0);
-  Sodexomodule.init();
+const init = async () => {
+
+
+  try {
+    const sodexoDailyMenuJSON = await getJSON(Sodexomodule.dailyMenuUrl);
+    Sodexomodule.init(sodexoDailyMenuJSON);
+
+
+    //FazerModule.init();
+
+  }catch (e){
+    console.error(e);
+    //notify user
+  }
+
+  try {
+    const a = await fetch('https://cors-anywhere.herokuapp.com/https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14');
+    console.log(a);
+  }catch (e) {
+    console.error(e);
+    //notify user
+  }
+
+
   createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
+
+
 
   randomDish.addEventListener('click', randomDishFunc);
 

@@ -1,5 +1,11 @@
-import menuFinnish from '../fazer-menu-fi.json';
-import menuEnglish from '../fazer-menu-en.json';
+
+import  {getJSON} from "./getJSON-module";
+
+
+
+const today = + new Date().toISOString().slice(0, 10);
+const dailyMenuUrlFi = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=270540&weekDate=2020-01-14';
+const dailyMenuUrlEn = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14';
 
 
 let coursesEn = [];
@@ -74,9 +80,18 @@ const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
  * Initializes the menus
  * @param {Number} weekDay
  */
-const init = (weekDay = 0) => {
-  parseDailyMenuFromJSON(menuFinnish, weekDay, 'fi');
-  parseDailyMenuFromJSON(menuEnglish, weekDay, 'en');
+const init = async (weekDay = 0) => {
+  try {
+    const fazerDailyMenuJSONFi = await getJSON(dailyMenuUrlFi);
+    const fazerDailyMenuJSONEn = await getJSON(dailyMenuUrlEn);
+    console.log('testiii;', fazerDailyMenuJSONEn);
+    parseDailyMenuFromJSON(fazerDailyMenuJSONFi, weekDay, 'fi');
+    parseDailyMenuFromJSON(fazerDailyMenuJSONEn, weekDay, 'en');
+  }catch (e){
+    console.error(e);
+    //notify user
+  }
+
 };
 
 
