@@ -62,9 +62,7 @@ nav {
 
 .links a:hover {
 
-  border: solid 1px var(--vari1);
   border-radius: 10px;
-  margin: -1px;
   background-color: var(--taustavari);
 
 
@@ -118,7 +116,7 @@ header {
 #slogan {
   font-family: 'Roboto Slab';
   font-weight: 400;
-  font-size: 1.43em;
+  font-size:calc(15px + 2vw);
 }
 
 .headerImage {
@@ -166,12 +164,13 @@ header {
 
 .mainText h2 {
   font-family: LatoBold;
+  font-size:calc(15px + 1.5vw);
 }
 
 .mainText p {
   margin: 0 !important;
   font-family: LatoRegular;
-  font-size: 1.5em;
+  font-size:calc(15px + 1vw);
   line-height: 1.5;
 }
 
@@ -203,7 +202,7 @@ header {
 
 .restaurantName {
   font-family: LatoBlack;
-  font-size: 1.3em;
+  font-size:calc(15px + 1.2vw);
   margin-right: 10px;
 }
 
@@ -218,6 +217,8 @@ header {
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  font-size: 1.5vw;
+
 }
 
 .restaurantLocation {
@@ -230,7 +231,7 @@ header {
 
 .menuText {
   font-family: LatoRegular;
-  font-size: 1em;
+  font-size: 1vw;
 }
 
 .fa-map-marker-alt {
@@ -256,132 +257,18 @@ header {
 
 .ravintolatH3 {
   font-family: LatoBold;
-  font-size: 1.5em;
+  font-size:calc(15px + 1.5vw);
   text-align: center;
 }
 .hide {
   display: none!important;
 }
 
-@media only screen and (max-width: 800px) {
-  nav {
-    flex-direction: column;
-  }
-
-  .searchBar input {
-    width: 100%;
-  }
-
-  header {
-    background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
-
-  }
-
-  .headerImage {
-    display: none;
-  }
-
-  .headerText {
-    background-color: var(--taustavari);
-    padding: -10px;
-  }
-
-  .mobileNav {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-
-
-  }
-  .mobileLinks {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 2em;
-    font-family: LatoRegular;
-    width: 100%;
-
-
-
-  }
-  .mobileLinks a {
-    color: black;
-    text-decoration: none;
-    line-height: 1.5em;
-    width: 100%;
-    text-align: center;
-
-  }
-  .mobileLinks a:hover{
-    background-color: var(--hoverLinkki);
-  }
-
-  .links {
-    display: none;
-  }
-
-  .barsIcon {
-    font-size: 2em;
-    display: flex;
-  }
-
-  .searchBar {
-    justify-content: left;
-  }
-
-  .searchIcon {
-    display: none;
-  }
-
-  #search {
-    display: none;
-  }
-
-  .restaurantLogo {
-    margin-left: 0;
-
-  }
-
-  .ravintolat {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ravintola {
-    margin: 1vh;
-    width: 80%;
-  }
-
-  .restaurantLogo {
-    width: 12vw;
-    height: 12vw;
-  }
-
-  html, body {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .mainText {
-    text-align: center;
-    margin: 2vh;
-
-  }
-
-
-  .mainText p {
-    font-size: 1em;
-
-  }
-
+#menuFazer, #menuSodexo p {
+  font-family: LatoRegular;
+  font-size: max(1em,15px);
 }
 
-@media only screen and (max-height: 800px) {
-  .triangle {
-    border-bottom: 160px solid var(--taustavari) !important;
-    border-right: 160px solid transparent !important;
-  }
+#menuFazer, #menuSodexo h3 {
+  font-family: LatoBold;
 }
-

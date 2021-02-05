@@ -1,0 +1,4 @@
+.triangle {
+  border-bottom: 160px solid var(--taustavari) !important;
+  border-right: 160px solid transparent !important;
+}

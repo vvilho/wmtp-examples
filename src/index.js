@@ -13,7 +13,8 @@ if ('serviceWorker' in navigator) {
 
 import Sodexomodule from './assets/modules/sodexo-module';
 import FazerModule from "./assets/modules/fazer-module";
-import  {getJSON} from "./assets/modules/getJSON-module";
+import {getJSON} from "./assets/modules/getJSON-module";
+import moment from 'moment';
 
 const mobileNav = document.querySelector('.mobileNav');
 const barsIconDiv = document.querySelector('.barsIcon');
@@ -40,9 +41,7 @@ barsIconDiv.addEventListener('click', () => {
 });
 
 
-
-
-function createMenu(sodexo, fazer){
+function createMenu(sodexo, fazer) {
   menuSodexo.textContent = "";
   menuFazer.textContent = "";
   renderMenu(sodexo, 'sodexo');
@@ -52,37 +51,49 @@ function createMenu(sodexo, fazer){
 };
 
 const renderMenu = (menuData, restaurant) => {
-  menuData.forEach((course, i) => {
-    let renderRestaurant;
 
-    if (restaurant === 'sodexo'){
-      renderRestaurant = menuSodexo;
-    }else {
-      renderRestaurant = menuFazer;
-    }
+  let renderRestaurant;
 
-    if(i==0){
-      let h3 = document.createElement('h3');
-      h3.innerHTML += course + "<br>";
-      renderRestaurant.appendChild(h3);
-    }else {
-      let p = document.createElement('p');
-      p.innerHTML += course + "<br>";
-      renderRestaurant.appendChild(p);
-    }
-  });
+  if (restaurant === 'sodexo') {
+    renderRestaurant = menuSodexo;
+  } else {
+    renderRestaurant = menuFazer;
+  }
+
+  let h3 = document.createElement('h3');
+  if(lang == 1){
+    moment.locale("fi");
+    h3.innerHTML += moment().format('dddd') + "<br>";
+  }else{
+    moment.locale("en");
+    h3.innerHTML += moment().format('dddd') + "<br>";
+  }
+
+  renderRestaurant.appendChild(h3);
+
+  if (menuData.length == 0){
+    menuData.push('No menudata');
+  }
+  for (const course of menuData) {
+
+    let p = document.createElement('p');
+    p.innerHTML += course + "<br>";
+    renderRestaurant.appendChild(p);
+
+  }
 };
 
 /*
 * App chooses random dish for user
 * */
 const randomDishFunc = () => {
-  if(lang == 0){
+  if (lang == 0) {
     const combinedMenu = FazerModule.coursesEn.concat(Sodexomodule.coursesEn);
     alert(combinedMenu[Math.floor(Math.random() * combinedMenu.length)]);
-  }else{
+  } else {
     const combinedMenu = FazerModule.coursesFi.concat(Sodexomodule.coursesFi);
-    alert(combinedMenu[Math.floor(Math.random() * combinedMenu.length)]);  }
+    alert(combinedMenu[Math.floor(Math.random() * combinedMenu.length)]);
+  }
 };
 /*
 * Sorts list ascending so in this case alphabetical order
@@ -126,15 +137,13 @@ const sortListDesc = () => {
 };
 
 sort.addEventListener('click', () => {
-  if(sortABC == 0){
+  if (sortABC == 0) {
     sortListAsc();
-  }else{
+  } else {
     sortListDesc();
   }
 
 });
-
-
 
 
 const init = async () => {
@@ -143,7 +152,7 @@ const init = async () => {
   try {
     const sodexoDailyMenuJSON = await getJSON(Sodexomodule.dailyMenuUrl);
     Sodexomodule.init(sodexoDailyMenuJSON);
-  }catch (e){
+  } catch (e) {
     console.error(e);
     //notify user
   }
@@ -152,14 +161,13 @@ const init = async () => {
     // const a = await fetch('https://cors-anywhere.herokuapp.com/https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14');
     // console.log(a);
     FazerModule.init();
-  }catch (e) {
+  } catch (e) {
     console.error(e);
     //notify user
   }
 
 
   createMenu(Sodexomodule.coursesFi, FazerModule.coursesFi);
-
 
 
   randomDish.addEventListener('click', randomDishFunc);
@@ -174,9 +182,6 @@ const init = async () => {
     lang = 0;
     createMenu(Sodexomodule.coursesEn, FazerModule.coursesEn);
   });
-
-
-
 
 
 };
