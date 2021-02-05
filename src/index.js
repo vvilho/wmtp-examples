@@ -45,16 +45,34 @@ barsIconDiv.addEventListener('click', () => {
 function createMenu(sodexo, fazer){
   menuSodexo.textContent = "";
   menuFazer.textContent = "";
-  console.log("clicked");
-  for (const course of sodexo) {
-    menuSodexo.innerHTML += course + "<br> <br>";
+  renderMenu(sodexo, 'sodexo');
+  renderMenu(fazer, 'fazer');
 
-  }
-  for (const course of fazer) {
-    menuFazer.innerHTML += course + "<br> <br>";
 
-  }
 };
+
+const renderMenu = (menuData, restaurant) => {
+  menuData.forEach((course, i) => {
+    let renderRestaurant;
+
+    if (restaurant === 'sodexo'){
+      renderRestaurant = menuSodexo;
+    }else {
+      renderRestaurant = menuFazer;
+    }
+
+    if(i==0){
+      let h3 = document.createElement('h3');
+      h3.innerHTML += course + "<br>";
+      renderRestaurant.appendChild(h3);
+    }else {
+      let p = document.createElement('p');
+      p.innerHTML += course + "<br>";
+      renderRestaurant.appendChild(p);
+    }
+  });
+};
+
 /*
 * App chooses random dish for user
 * */
@@ -125,18 +143,15 @@ const init = async () => {
   try {
     const sodexoDailyMenuJSON = await getJSON(Sodexomodule.dailyMenuUrl);
     Sodexomodule.init(sodexoDailyMenuJSON);
-
-
-    //FazerModule.init();
-
   }catch (e){
     console.error(e);
     //notify user
   }
 
   try {
-    const a = await fetch('https://cors-anywhere.herokuapp.com/https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14');
-    console.log(a);
+    // const a = await fetch('https://cors-anywhere.herokuapp.com/https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14');
+    // console.log(a);
+    FazerModule.init();
   }catch (e) {
     console.error(e);
     //notify user

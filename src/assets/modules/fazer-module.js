@@ -71,7 +71,7 @@ const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
     if(lang === 'fi'){
       coursesFi.push(mealName ? `${mealName}: ${dishes.join(", ")}` : `${dishes.join(", ")}`);
     }else{
-      coursesEn.push(mealName ? `${mealName}: ${dishes.join(", ")}` : `${dishes.join(" ,")}`);
+      coursesEn.push(mealName ? `${mealName}: ${dishes.join(", ")}` : `${dishes.join(", ")}`);
     }
   });
 
@@ -84,7 +84,7 @@ const init = async (weekDay = 0) => {
   try {
     const fazerDailyMenuJSONFi = await getJSON(dailyMenuUrlFi);
     const fazerDailyMenuJSONEn = await getJSON(dailyMenuUrlEn);
-    console.log('testiii;', fazerDailyMenuJSONEn);
+
     parseDailyMenuFromJSON(fazerDailyMenuJSONFi, weekDay, 'fi');
     parseDailyMenuFromJSON(fazerDailyMenuJSONEn, weekDay, 'en');
   }catch (e){
