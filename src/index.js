@@ -158,9 +158,10 @@ const init = async () => {
   }
 
   try {
+    // Due cors anywhere not working ----> https://github.com/Rob--W/cors-anywhere/issues/301
     // const a = await fetch('https://cors-anywhere.herokuapp.com/https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14');
     // console.log(a);
-    FazerModule.init();
+    // FazerModule.init();
   } catch (e) {
     console.error(e);
     //notify user

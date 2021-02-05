@@ -6,7 +6,7 @@ import  {getJSON} from "./getJSON-module";
 const today = + new Date().toISOString().slice(0, 10);
 const dailyMenuUrlFi = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=270540&weekDate=2020-01-14';
 const dailyMenuUrlEn = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14';
-
+const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 let coursesEn = [];
 let coursesFi = [];
@@ -82,14 +82,14 @@ const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
  */
 const init = async (weekDay = 0) => {
   try {
-    const fazerDailyMenuJSONFi = await getJSON(dailyMenuUrlFi);
-    const fazerDailyMenuJSONEn = await getJSON(dailyMenuUrlEn);
+    const fazerDailyMenuJSONFi = await getJSON(`${corsProxy} + ${dailyMenuUrlFi}`);
+    const fazerDailyMenuJSONEn = await getJSON(`${corsProxy} + ${dailyMenuUrlEn}`);
 
     parseDailyMenuFromJSON(fazerDailyMenuJSONFi, weekDay, 'fi');
     parseDailyMenuFromJSON(fazerDailyMenuJSONEn, weekDay, 'en');
   }catch (e){
     console.error(e);
-    //notify user
+
   }
 
 };
