@@ -12,13 +12,15 @@ let coursesFi = [];
 const ParseSodexoMenu = (sodexoMenu) => {
   const courses = Object.values(sodexoMenu);
   for (const course of courses) {
-    coursesEn.push(course.title_en);
-    coursesFi.push(course.title_fi);
+    coursesEn.push(`${course.title_en} (${course.dietcodes})`);
+    coursesFi.push(`${course.title_fi} (${course.dietcodes})`);
   }
 };
 
+
 const init = (menu) => {
   ParseSodexoMenu(menu.courses);
+
 };
 
 const SodexoModule = {init, coursesFi, coursesEn, dailyMenuUrl};

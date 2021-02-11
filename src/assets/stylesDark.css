@@ -18,17 +18,22 @@
 }
 
 :root {
-  --vari1: black;
-  --taustavari: #35d6fd;
-  --tekstiTausta: #ffffff;
+  --vari1: white;
+  --taustavari: #1b2224;
+  --tekstiTausta: #131212;
   --hoverLinkki: #e5e5e5;
 }
+
 
 html, body {
   margin: 0;
   padding: 0 20px;
   max-width: 100%;
   overflow-x: hidden;
+  background-color: #131212;
+  color: var(--vari1);
+  border-color: var(--vari1);
+
 }
 
 nav {
@@ -124,7 +129,7 @@ header {
   min-height: 160px;
   display: flex;
   justify-content: center;
-  z-index: 0;
+  z-index: 1;
 
 
 }
@@ -265,7 +270,7 @@ header {
 }
 
 .fa-search {
-  color: var(--vari1);
+  color: black;
   position: relative;
   left: 25px;
 }

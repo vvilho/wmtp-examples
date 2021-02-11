@@ -1,3 +1,9 @@
+@font-face {
+  font-family: LatoRegular;
+  src: url("./fonts/Lato-Regular.ttf") format('truetype');
+
+}
+
 nav {
   flex-direction: column;
 }
@@ -38,7 +44,6 @@ header {
 
 }
 .mobileLinks a {
-  color: black;
   text-decoration: none;
   line-height: 1.5em;
   width: 100%;
@@ -46,7 +51,7 @@ header {
 
 }
 .mobileLinks a:hover{
-  background-color: var(--hoverLinkki);
+  background-color: var(#1b2224);
 }
 
 .links {

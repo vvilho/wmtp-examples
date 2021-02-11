@@ -1,16 +1,14 @@
 
-import  {getJSON} from "./getJSON-module";
+import {fetchGetJson} from "../modules/network";
 
 
+const today = +new Date().toISOString().slice(0, 10);
+const dailyMenuUrlFi = '/api/restaurant/menu/week?language=fi&restaurantPageId=270540&weekDate=2020-01-14';
+const dailyMenuUrlEn = '/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14';
 
-const today = + new Date().toISOString().slice(0, 10);
-const dailyMenuUrlFi = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=270540&weekDate=2020-01-14';
-const dailyMenuUrlEn = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=en&restaurantPageId=270540&weekDate=2020-01-14';
-const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
 let coursesEn = [];
 let coursesFi = [];
-
 
 
 /**
@@ -19,7 +17,7 @@ let coursesFi = [];
  * @param {object}
  * @param {Array}
 
-const fazerMenu = (menu, langMenu) => {
+  const fazerMenu = (menu, langMenu) => {
   for (const days of menu.LunchMenus) {
     if (days.Date != '13.1.2020') {
       break;
@@ -55,7 +53,7 @@ const fazerMenu = (menu, langMenu) => {
 
 /*******************************************************************************************************
 
-/**
+ /**
  *
  * Parse daily menu from JSON data with choosable week day
  * @param {Object} menuData
@@ -63,14 +61,17 @@ const fazerMenu = (menu, langMenu) => {
  * @returns {Array} menu
  */
 const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
+
   let dailyMenu = menuData.LunchMenus[weekDay].SetMenus.map(setMenu => {
     let mealName = setMenu.Name;
+
     let dishes = setMenu.Meals.map(dish => {
       return `${dish.Name} (${dish.Diets.join(", ")})`;
+
     });
-    if(lang === 'fi'){
+    if (lang === 'fi') {
       coursesFi.push(mealName ? `${mealName}: ${dishes.join(", ")}` : `${dishes.join(", ")}`);
-    }else{
+    } else {
       coursesEn.push(mealName ? `${mealName}: ${dishes.join(", ")}` : `${dishes.join(", ")}`);
     }
   });
@@ -82,22 +83,20 @@ const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
  */
 const init = async (weekDay = 0) => {
   try {
-    const fazerDailyMenuJSONFi = await getJSON(`${corsProxy} + ${dailyMenuUrlFi}`);
-    const fazerDailyMenuJSONEn = await getJSON(`${corsProxy} + ${dailyMenuUrlEn}`);
+    // const fazerDailyMenuJSONFi = await fetchGetJson(dailyMenuUrlFi, true);
+    // const fazerDailyMenuJSONEn = await fetchGetJson(dailyMenuUrlEn, true);
+    const fazerDailyMenuJSONFi = await fetchGetJson(dailyMenuUrlFi, true);
+    const fazerDailyMenuJSONEn = await fetchGetJson(dailyMenuUrlEn, true);
 
     parseDailyMenuFromJSON(fazerDailyMenuJSONFi, weekDay, 'fi');
     parseDailyMenuFromJSON(fazerDailyMenuJSONEn, weekDay, 'en');
-  }catch (e){
+  } catch (e) {
     console.error(e);
 
   }
-
 };
-
 
 
 const FazerModule = {init, coursesFi, coursesEn};
 
 export default FazerModule;
-
-
