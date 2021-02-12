@@ -83,8 +83,6 @@ const parseDailyMenuFromJSON = (menuData, weekDay, lang) => {
  */
 const init = async (weekDay = 0) => {
   try {
-    // const fazerDailyMenuJSONFi = await fetchGetJson(dailyMenuUrlFi, true);
-    // const fazerDailyMenuJSONEn = await fetchGetJson(dailyMenuUrlEn, true);
     const fazerDailyMenuJSONFi = await fetchGetJson(dailyMenuUrlFi, true);
     const fazerDailyMenuJSONEn = await fetchGetJson(dailyMenuUrlEn, true);
 

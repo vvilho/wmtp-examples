@@ -1,5 +1,5 @@
 
-
+import {fetchGetJson} from "./network";
 
 const today = new Date().toISOString().slice(0, 10);
 const dailyMenuUrl = 'https://www.sodexo.fi/ruokalistat/output/daily_json/152/'+today;
@@ -18,8 +18,14 @@ const ParseSodexoMenu = (sodexoMenu) => {
 };
 
 
-const init = (menu) => {
-  ParseSodexoMenu(menu.courses);
+const init = async () => {
+  try{
+    const sodexoDailyMenuJSON = await fetchGetJson(dailyMenuUrl);
+    ParseSodexoMenu(sodexoDailyMenuJSON.courses);
+  }catch(e){
+    console.error(e);
+  }
+
 
 };
 

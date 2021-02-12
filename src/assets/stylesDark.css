@@ -282,6 +282,7 @@ header {
 
 #langButtons button {
   margin: 15px;
+  outline: none;
 }
 
 .ravintolatH3 {

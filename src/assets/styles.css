@@ -273,10 +273,12 @@ header {
 #langButtons {
   display: flex;
   justify-content: center;
+
 }
 
 #langButtons button {
   margin: 15px;
+  outline: none;
 }
 
 .ravintolatH3 {
