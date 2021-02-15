@@ -15,6 +15,7 @@ if ('serviceWorker' in navigator) {
 import Sodexomodule from './assets/modules/sodexo-module';
 import FazerModule from "./assets/modules/fazer-module";
 import moment from 'moment';
+import HSLData from './assets/modules/hsl-data';
 
 const mobileNav = document.querySelector('.mobileNav');
 const barsIconDiv = document.querySelector('.barsIcon');
@@ -28,6 +29,7 @@ const menuFazer = document.getElementById("menuFazer");
 const darkMode = document.querySelector(".darkMode");
 const darkmodeMobile = document.querySelector(".darkModeMobile");
 const mainCssFile = document.getElementById("mainStylesheet");
+const hslData = document.querySelector(".hsl-data");
 
 if (localStorage.getItem('darkMode') === 'on') {
   mainCssFile.setAttribute('href', './assets/stylesDark.css');
@@ -35,7 +37,6 @@ if (localStorage.getItem('darkMode') === 'on') {
 }
 
 let lang = 1;
-
 
 
 /*
@@ -121,7 +122,7 @@ const renderMenu = (menuData, restaurant) => {
   }
 
   renderRestaurant.appendChild(h3);
-  if(menuData.length == 0){
+  if (menuData.length == 0) {
     let p = document.createElement('p');
     p.innerHTML += "No data available";
     renderRestaurant.appendChild(p);
@@ -136,6 +137,28 @@ const renderMenu = (menuData, restaurant) => {
 
 
 };
+
+const loadHSLData = async () => {
+  hslData.textContent = "";
+  const result = await HSLData.getRidesByStopId(2132208);
+  const stopData = result.data.stop;
+
+  console.log('loadHSL: ', stopData);
+  const stopElement = document.createElement('div');
+  stopElement.innerHTML = `<h3>Seuraavat vuorot pysäkiltä ${stopData.name}</h3><ul>`;
+
+  for (const ride of stopData.stoptimesWithoutPatterns) {
+    stopElement.innerHTML += `<li>${ride.trip.routeShortName},
+${ride.trip.tripHeadsign},
+${HSLData.formatTime(ride.scheduledDeparture)},</li>`;
+
+  }
+  stopElement.innerHTML += `</ul>`;
+  hslData.appendChild(stopElement);
+
+};
+
+
 const localstorageCheck = () => {
   if (localStorage.getItem('darkMode') === 'on') {
     mainCssFile.setAttribute('href', './assets/stylesDark.css');
@@ -174,6 +197,7 @@ const initialMenuLoad = async () => {
 const init = async () => {
   await initialMenuLoad();
   localstorageCheck();
+  loadHSLData();
 };
 
 init();
