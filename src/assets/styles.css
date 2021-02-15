@@ -141,9 +141,9 @@ header {
   font-size:clamp(15px, 2vw, 70px);
 }
 
-.headerImage {
+.webp .headerImage {
   height: inherit;
-  background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
+  background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114 (2).webp");
 
   background-size: 135%;
   background-position: center;
@@ -153,6 +153,11 @@ header {
   flex-grow: 1;
   position: relative;
   z-index: 1;
+
+}
+
+.no-webp headerImage {
+  background-image: url("black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.jpg");
 
 }
 
