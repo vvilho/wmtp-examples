@@ -28,6 +28,10 @@ const menuFazer = document.getElementById("menuFazer");
 const darkMode = document.querySelector(".darkMode");
 const darkmodeMobile = document.querySelector(".darkModeMobile");
 const mainCssFile = document.getElementById("mainStylesheet");
+const modal = document.getElementById("menuModal");
+const closeModal = document.querySelector(".closeModal");
+const restaurantLogo = document.querySelectorAll(".restaurantLogo");
+const modalIFrame = document.getElementById("modalIFrame");
 
 if (localStorage.getItem('darkMode') === 'on') {
   mainCssFile.setAttribute('href', './assets/stylesDark.css');
@@ -35,7 +39,6 @@ if (localStorage.getItem('darkMode') === 'on') {
 }
 
 let lang = 1;
-
 
 
 /*
@@ -101,6 +104,53 @@ langEnglish.addEventListener('click', () => {
 
 });
 
+/**
+ *Modal functionality
+ */
+
+
+restaurantLogo.forEach(logo => logo.addEventListener('click', event => {
+  modalIFrame.textContent = "";
+  if (logo.alt.split(' ')[0] == "Sodexo") {
+    modalIFrame.innerHTML = `<iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1979.2925872863293!2d24.843278252252233!3d60.25861908190529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46920a1e5e4bb8c3%3A0x1dabe03ba3a83a2c!2sMetropolia%20Ammattikorkeakoulu%20-%20Myyrm%C3%A4en%20kampus!5e0!3m2!1sfi!2sfi!4v1613548459228!5m2!1sfi!2sfi"
+        width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>`;
+  }
+  if (logo.alt.split(' ')[0] == "Fazer") {
+    modalIFrame.innerHTML = `<iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1981.4086878247851!2d25.07615685225142!3d60.22361448189217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x469208cda130006f%3A0xa777acdeae7ab784!2sMetropolia%20Ammattikorkeakoulu%20%E2%80%94%20Myllypuron%20kampus!5e0!3m2!1sfi!2sfi!4v1613550123046!5m2!1sfi!2sfi"
+        width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+        tabindex="0"></iframe>`;
+  }
+  document.body.classList.add('modal-open');
+  modal.style.display = "block";
+}));
+
+closeModal.addEventListener ('click', () => {
+  modal.style.display = "none";
+  document.body.classList.remove('modal-open');
+
+});
+
+window.addEventListener('click', (event) => {
+  if (event.target == modal){
+    modal.style.display = "none";
+    document.body.classList.remove('modal-open');
+
+  }
+});
+
+document.addEventListener('keydown', (event) =>{
+  if(event.key === "Escape"){
+    modal.style.display = "none";
+    document.body.classList.remove('modal-open');
+  }
+});
+
+
+
+
 
 const renderMenu = (menuData, restaurant) => {
 
@@ -121,7 +171,7 @@ const renderMenu = (menuData, restaurant) => {
   }
 
   renderRestaurant.appendChild(h3);
-  if(menuData.length == 0){
+  if (menuData.length == 0) {
     let p = document.createElement('p');
     p.innerHTML += "No data available";
     renderRestaurant.appendChild(p);
